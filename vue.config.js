@@ -1,26 +1,21 @@
-const { defineConfig } = require("@vue/cli-service");
+const { defineConfig } = require('@vue/cli-service')
+const theme = require('./theme.config')
 
 module.exports = defineConfig({
   transpileDependencies: true,
-  outputDir: "../listen-vue",
-  devServer: {
-    port: 8090,
-    host: "0.0.0.0",
-    https: false,
-    open: true,
-  },
+  outputDir: `../${theme.name}`,
   publicPath:
-    process.env.NODE_ENV === "production" ? "/usr/themes/listen-vue/" : "/",
+    process.env.NODE_ENV === 'production' ? `/usr/themes/${theme.name}/` : '/',
 
   pages: {
     index: {
-      entry: "./src/main.js",
+      entry: './src/main.js',
       template:
-        process.env.NODE_ENV === "production"
-          ? "./public/template.html"
-          : "./public/index.html",
+        process.env.NODE_ENV === 'production'
+          ? './public/template.html'
+          : './public/index.html',
       filename:
-        process.env.NODE_ENV === "production" ? "index.php" : "index.html",
-    },
-  },
-});
+        process.env.NODE_ENV === 'production' ? 'index.php' : 'index.html'
+    }
+  }
+})
