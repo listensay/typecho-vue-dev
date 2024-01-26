@@ -1,6 +1,7 @@
 module.exports = {
+  // 主题名称
   name: 'listen_vue',
-  ver: 0.1,
+  // 主题API
   server: {
     url: '/'
   }
