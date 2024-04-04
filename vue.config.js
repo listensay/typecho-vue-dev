@@ -1,15 +1,26 @@
 const { defineConfig } = require('@vue/cli-service')
-const theme = require('./theme.config')
+let { name } = require('./theme.config.js')
+
+// 获取版本号
+let version
+if (process.env.NODE_ENV === 'production') {
+  version = process.env.VERSION
+}
 
 module.exports = defineConfig({
   transpileDependencies: true,
-  outputDir: `../${theme.name}`,
+  // 打包文件名
+  outputDir: `../${version}/${name}`,
   publicPath:
-    process.env.NODE_ENV === 'production' ? `/usr/themes/${theme.name}/` : '/',
+    process.env.NODE_ENV === 'production'
+      ? `/usr/themes/${version}/${name}`
+      : '/',
 
   pages: {
     index: {
+      // 入口文件
       entry: './src/main.js',
+      // 模板文件
       template:
         process.env.NODE_ENV === 'production'
           ? './public/template.html'
